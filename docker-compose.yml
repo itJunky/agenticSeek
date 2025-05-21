@@ -25,8 +25,8 @@ services:
     container_name: searxng
     image: docker.io/searxng/searxng:latest
     restart: unless-stopped
-    ports:
-      - "8080:8080"
+   #ports:
+   #  - "8080:8080"
     volumes:
       - ./searxng:/etc/searxng:rw
     environment:
@@ -89,11 +89,12 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.backend
+    env_file: .env
     stdin_open: true
     tty: true
     shm_size: 8g
-    ports:
-      - "8000:8000"
+   #ports:
+   #  - "8000:8000"
     volumes:
       - ./:/app
     environment:
@@ -104,6 +105,7 @@ services:
       - LM_STUDIO_URL=http://localhost:1234
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    restart: always
     depends_on:
       - redis
       - searxng
