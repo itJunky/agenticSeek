@@ -25,7 +25,7 @@ apt-get install -y \
         libnss3 \
         xdg-utils 
 
-RUN     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 
+RUN     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
         dpkg -i google-chrome-stable_current_amd64.deb;  \
         apt --fix-broken -y install
 
@@ -40,7 +40,7 @@ COPY sources/ ./sources/
 COPY prompts/ ./prompts/
 COPY crx/ crx/
 COPY llm_router/ llm_router/
-COPY .env .
+#COPY .env .
 COPY config.ini .
 
 # Expose port
